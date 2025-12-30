@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+ <html lang="bn">
+  <head>
+   <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <title>Garments Washing Company</title>
+      <!-- Google Font -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* =============================
+       🔧 বেসিক স্টাইল (রং, ফন্ট ইত্যাদি)
+       ============================= */
+    :root{
+      --bg:#0b132b;        /* ডার্ক নীল ব্যাকগ্রাউন্ড */
+      --ink:#0f172a;       /* টেক্সটের গাঢ় রং */
+      --muted:#6b7280;     /* হালকা টেক্সট */
+      --brand:#2563eb;     /* ব্র্যান্ড নীল */
+      --brand-2:#22c55e;   /* সেকেন্ডারি সবুজ */
+      --paper:#ffffff;     /* সাদা */
+      --soft:#f3f4f6;      /* সফট গ্রে */
+      --ring: rgba(37, 99, 235,.25);
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(2,6,23,.10);
+    }
+	
+	*{ box-sizing: border-box;
+	}
+  html{ scroll-behavior: smooth;
+  }
+  body{
+        margin:0;
+		font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:var(--ink); background:#ffffff;
+}
+a{ color:inherit; text-decoration: none; }
+.container{ width:min(1100px, 100%); margin-inline:auto; }
+
+/* =============================
+   🔝 হেডার/নাভ (স্টিকি + মোবাইল মেনু)
+   ============================= */
+header{
+  position: sticky; top:0; z-index: 50; background:rgba(255,255,255,.8); backdrop-filter: blur(10px); border-bottom:1px solid #e5e7eb;
+}
+.nav{ display:flex; align-items:center; justify-content: space-between; gap:16px; padding:14px 0; }
+
+.nav-item {
+  position: relative;
+}
+
+/* hidden by default */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  background: #ffffff;
+  min-width: 200px;
+  border-radius: 8px;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+
+  transition: 
+    opacity 0.3s ease,
+    transform 0.3s ease;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  z-index: 1000;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 16px;
+  color: #111;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background: #f1f5f9;
+}
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.dropdown-menu {
+  transition: 
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+
+
+
+.logo{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px; }
+.logo-badge{ width:40px; aspect-ratio:1; display:grid; place-items:center; background:var(--brand); color:white; border-radius:12px; font-weight:800; box-shadow: var(--shadow); }
+.menu{ display:flex; gap:22px; align-items:center; }
+.menu a{ padding:10px 12px; border-radius:10px; font-weight:600; color:#1f2937; }
+.menu a:hover{ background:#eef2ff; color:#1d4ed8; }
+.cta{ background:var(--brand); color:white; padding:10px 16px; border-radius:12px; font-weight:700; box-shadow: var(--shadow); }
+
+/* মোবাইল মেনু */
+.mobile-toggle{ display:none; border:1px solid #e5e7eb; padding:8px 10px; border-radius:10px; background:white; }
+@media (max-width: 800px){
+  .menu{ display:none; position:absolute; top:64px; right:5%; flex-direction:column; align-items:stretch; background:white; padding:12px; border:1px solid #e5e7eb; border-radius:14px; width:min(300px, 90vw); box-shadow: var(--shadow); }
+  .menu.open{ display:flex; }
+  .mobile-toggle{ display:inline-flex; }
+}
+
+/* =============================
+   🏠 হিরো সেকশন (বড় ব্যানার)
+   ============================= */
+.hero{
+  position: relative; overflow:hidden; isolation:isolate;
+  background: radial-gradient(1200px 600px at 70% -10%, #dbeafe 0%, transparent 70%) , #f8fafc;
+}
+.hero .wrap{ display:grid; grid-template-columns: 1.1fr .9fr; gap:40px; align-items:center; padding: min(11vh, 110px) 0; }
+.headline{ font-size: clamp(28px, 5vw, 52px); line-height:1.05; font-weight: 800; letter-spacing:-.5px; }
+.sub{ color:var(--muted); font-size: clamp(14px, 2.3vw, 18px); }
+.hero-btns{ display:flex; gap:14px; margin-top:18px; flex-wrap:wrap; }
+.btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius: 14px; font-weight:700; border:1px solid #d1d5db; background:white; }
+.btn.primary{ background:var(--brand); color:white; border-color:transparent; }
+
+.hero-visual{
+  border-radius: 20px; overflow:hidden; border:1px solid #e5e7eb; box-shadow: var(--shadow);
+  background:url('img/s-m.jpg') center/cover no-repeat; aspect-ratio: 4/3;
+}
+@media (max-width: 900px){ .hero .wrap{ grid-template-columns:1fr; } .hero-visual{ order:-1; } }
+
+/* =============================
+   🧪 সার্ভিস সেকশন
+   ============================= */
+section{ padding: 70px 0; }
+.section-head{ display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:26px; }
+.section-head h2{ font-size: clamp(22px, 3.5vw, 34px); margin:0; }
+.grid-4{
+padding:20px;
+margin-bottom:10px;
+ display:grid;
+ gap:16px;
+ border-radius:12px;
+ box-shadow:0 6px 18px rgba(15,23,42,0.06);
+   transition: transform .25s ease, box-shadow .25s ease;
+ }
+ .grid-4:hover{
+ background: #f1f5f9;
+  transform: scale(1.03);
+  box-shadow: 0 20px 40px rgba(15,23,42,0.12);
+}
+ 
+
+
+
+ 
+ 
+ /* Initial hidden state */
+.fade-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+/* When visible */
+.fade-section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+.card{  
+		background:var(--card);
+		border-radius:12px;
+		box-shadow:0 6px 18px rgba(15,23,42,0.06);
+		padding:14px;
+		margin:14px 0;
+		width: 30vh;
+		float:left;
+	}
+	
+	
+.card h2{margin:0;font-size:16px;color:#082c30}
+.meta{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.chip{background:#eef7f6;color:var(--accent);padding:6px 10px;border-radius:999px;font-size:13px}
+
+
+/* accordion */
+.acc-btn{width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 0;border:none;background:transparent;cursor:pointer}
+.acc-body{max-height:0;overflow:hidden;transition:max-height 260ms ease;padding:0}
+.acc-body .content{padding:10px 0 0}
+.acc-body.open{padding-top:10px}
+
+ul{padding-left:18px;margin:6px 0}
+li{margin:6px 0}
+
+/* responsive */
+@media(min-width:720px){
+  header{padding:28px}
+  h1{font-size:22px}
+  .card{padding:18px}
+}
+
+/* small visual helpers */
+.badge{font-size:12px;padding:6px 8px;border-radius:8px;background:#fff8e6;color:#7a4a00;border:1px solid #ffe6a8}
+.steps{background:#fbfdff;border-radius:8px;padding:10px;border:1px solid #eef6fb}
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 900px){ .grid-4{ grid-template-columns: repeat(2,1fr);} }
+@media (max-width: 520px){ .grid-4{ grid-template-columns: 1fr;} }
+
+.card{ background:white; border:1px solid #e5e7eb; border-radius: var(--radius); padding:18px; box-shadow: var(--shadow); transition: transform .15s ease; }
+.card:hover{ transform: translateY(-2px); }
+ </style>
+</head>
+<body>
+  <!-- =============================
+       🔝 নাভবার: লোগো + মেনু
+       ============================= -->
+  <header >
+    <div class="container nav">
+      <a href="#" class="logo" aria-label="Brand home">
+        <span class="logo-badge">G/B</span>
+        <span class="lang-en">Garments Washing</span>
+        <span class="lang-bn">গার্মেন্টস ওয়াশিং</span>
+      </a>
+      <nav class="menu" id="menu">
+        <a href="index.html">
+			<div class="lang-en">Home</div>
+			<div class="lang-bn">হোম</div>
+		</a>
+		<div class="nav-item dropdown"> <a href="#process">
+															<span class="lang-en">Services ▾</span>
+															<span class="lang-bn"> সেবাসমূহ ▾</span>		
+										</a>
+
+																	  <!-- Sub Menu -->
+																	  <div class="dropdown-menu">
+																		<a href="#normal-wash">
+																		<div class="lang-en">Normal Wash</div>
+																		<div class="lang-bn">নরমাল / রিন্স ওয়াশ </div>
+																		</a>
+																		<a href="#enzyme-wash">
+																		<div class="lang-en"> Enzyme Wash </div>
+																		<div class="lang-bn">এনজাইম ওয়াশ </div>																		
+																		</a>
+																		<a href="#stone-wash">
+																		<div class="lang-en"> Stone Wash </div>
+																		<div class="lang-bn">স্টোন ওয়াশ </div>																		
+																		</a>
+																		<a href="#es">
+																		<div class="lang-en"> Enzyme Stone Wash </div>
+																		<div class="lang-bn">এনজাইম স্টোন ওয়াশ </div>																																				
+																		</a>
+																		<a href="#belish">
+																		<div class="lang-en"> Bleach Wash </div>
+																		<div class="lang-bn">  ব্লিচ ওয়াশ </div>																																				
+																		</a>
+																		<a href="#acid-wash">
+																		<div class="lang-en"> Acid Wash </div>
+																		<div class="lang-bn">অ্যাসিড ওয়াশ </div>																																				
+																		</a>																																																																					
+																	  </div>
+
+		</div>
+
+		
+		
+		
+		
+		
+		
+		
+		
+        <a href="costing.html">
+			<div class="lang-en">Costing</div>
+			<div class="lang-bn">কস্টিং</div>
+		</a>
+        <a href="#gallery">
+			<div class="lang-en">About</div>
+			<div class="lang-bn">আমাদের সম্পর্কে</div>
+		</a>
+        <a href="#contact" class="cta"> <button onclick="toggleLanguage()" class="lang-toggle-btn">  EN / বাংলা </button> </a>
+      </nav>
+      <button class="mobile-toggle" aria-label="Open menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    </div>
+  </header>  <!-- =============================
+       🏠 হিরো সেকশন: টাইটেল + ইমেজ
+       ============================= -->  
+	   
+<section class="hero">
+    <div class="container wrap">
+      <div>
+	  
+        <h1 class="headline">	
+			<div class="lang-en">Professional <span style="color:var(--brand)">Garment Washing</span>  Services </div>
+			<div class="lang-bn">পেশাদার  <span style="color:var(--brand)">গার্মেন্টস ওয়াশিং</span>  সার্ভিস </div>	
+		</h1>
+		
+        <p class="sub">		
+			<div class="lang-en">Consistent Quality • Modern Technology • Export-Ready Finish </div>
+			<div class="lang-bn">নির্ভরযোগ্য মান • আধুনিক প্রযুক্তি • এক্সপোর্ট উপযোগী ফিনিশ </div>	
+		</p>
+		
+		
+		
+        <div class="hero-btns">
+			<div class="lang-en">We provide high-quality garment washing solutions using advanced machinery and controlled chemical processes. Our services ensure clean finish, soft hand feel, color stability, and buyer inspection–approved results for bulk production.</div>
+			<div class="lang-bn">আমরা আধুনিক মেশিনারি ও নিয়ন্ত্রিত কেমিক্যাল প্রসেস ব্যবহার করে উচ্চমানের গার্মেন্টস ওয়াশিং সেবা প্রদান করি। আমাদের সার্ভিস ক্লিন ফিনিশ, সফট ফিল, কালার স্ট্যাবিলিটি এবং বায়ার ইন্সপেকশন উপযোগী ফলাফল নিশ্চিত করে—বিশেষ করে বাল্ক প্রোডাকশনের জন্য।</div>		
+		  <a class="btn primary" href="#services">
+		  	<div  class="lang-en">View Our Washing Services</div>
+			<div class="lang-bn">আমাদের ওয়াশিং সার্ভিস দেখুন</div>	
+		  </a>  
+        </div>
+		
+
+      </div>
+      <div class="hero-visual" aria-hidden="true"></div>
+    </div>
+  </section>  
+  
+  
+  <main class="container">
+  <!-- reusable card template --> 
+  
+  
+  <!-- =============================
+       🧪 সার্ভিস সেকশন
+       ============================= --> 
+<section id="services">
+    <div class="container">
+    <div class="section-head">  
+		<div class="lang-en">Our Services</div>
+		<div class="lang-bn">আমাদের সেবাসমূহ</div>
+	</div>
+	
+      <div class="grid-4">
+	  
+	  
+	  
+	<!-- ================================
+     🧺 Normal / Rinse Wash Section
+     ================================ -->
+<section id="normal-wash" class="wash-service fade-section">
+  <!-- 🔹 Section Header -->
+  <div class="wash-title">
+    
+    <!-- English Title -->
+    <div class="lang-en">
+      <h2>🧺 Normal / Rinse Wash</h2>
+      <p class="muted">Clean Finish. Consistent Quality. Buyer-Approved.</p>
+    </div>
+
+    <!-- Bangla Title -->
+    <div class="lang-bn">
+      <h2>🧺 নরমাল / রিন্স ওয়াশ</h2>
+      <p class="muted">পরিষ্কার ফিনিশ • নির্ভরযোগ্য মান • বায়ার অনুমোদিত</p>
+    </div>
+
+  </div>
+
+  <!-- 🔹 Accordion Card -->
+  <div class="card">
+
+    <!-- Accordion Button -->
+    <button class="acc-btn" data-target="normal-acc">
+      <div>
+        <h3 class="lang-en">Normal / Rinse Wash</h3>
+        <h3 class="lang-bn">নরমাল / রিন্স ওয়াশ</h3>
+      </div>
+
+      <span class="badge lang-en">Low Risk</span>
+      <span class="badge lang-bn">কম ঝুঁকি</span>
+    </button>
+
+    <!-- Accordion Body -->
+    <div id="normal-acc" class="acc-body">
+      <div class="content">
+
+        <!-- Meta Info -->
+        <div class="meta">
+          <span class="chip lang-en">Water • Detergent • Softener (Optional)</span>
+          <span class="chip lang-bn">পানি • ডিটারজেন্ট • সফটনার (ঐচ্ছিক)</span>
+
+          <span class="badge lang-en">10–25 min</span>
+          <span class="badge lang-bn">১০–২৫ মিনিট</span>
+        </div>
+
+        <!-- Process Steps -->
+        <div class="steps">
+          <h4 class="lang-en">Process Steps</h4>
+          <h4 class="lang-bn">প্রক্রিয়ার ধাপ</h4>
+
+          <ul class="lang-en">
+            <li>Load garments into washing machine</li>
+            <li>Add water and mild detergent</li>
+            <li>Run wash at normal temperature</li>
+            <li>Rinse to remove dust and chemicals</li>
+            <li>Apply softener, extract and dry</li>
+          </ul>
+
+          <ul class="lang-bn">
+            <li>ওয়াশিং  মেশিনে লোড করুন</li>
+            <li>পানি ও হালকা ডিটারজেন্ট দিন</li>
+            <li>স্বাভাবিক তাপমাত্রায় ওয়াশ করুন</li>
+            <li>ধুলা ও কেমিক্যাল দূর করতে রিন্স করুন</li>
+            <li>সফটনার দিয়ে পানি ঝরিয়ে ড্রাই করুন</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="wash-description">
+
+    <!-- English Description -->
+    <div class="lang-en">
+      <p>
+        <strong>Normal / Rinse Wash</strong> is the most basic yet essential garment
+        washing process. It removes dust, dirt, and chemical residues accumulated
+        during cutting, sewing, and handling.
+      </p>
+
+      <p>
+        This process maintains the natural texture of the fabric while delivering
+        a clean and fresh finish. It also helps control shrinkage, reducing the risk
+        of size variation after wearing.
+      </p>
+
+      <p>
+        This wash is ideal for garments where no color or fashion effect is required,
+        but cleanliness, softness, and comfort are essential.
+      </p>
+    </div>
+
+    <!-- Bangla Description -->
+    <div class="lang-bn">
+      <p>
+        <strong>নরমাল / রিন্স ওয়াশ</strong> হলো গার্মেন্টস ওয়াশিংয়ের সবচেয়ে বেসিক কিন্তু
+        অত্যন্ত গুরুত্বপূর্ণ একটি প্রক্রিয়া। এই ওয়াশের মাধ্যমে কাটিং, সেলাই ও
+        হ্যান্ডলিংয়ের সময় জমে থাকা ধুলো, ময়লা এবং অতিরিক্ত কেমিক্যাল রেসিডিউ
+        সম্পূর্ণভাবে দূর করা হয়।
+      </p>
+
+      <p>
+        এই প্রক্রিয়ায় কাপড়ের প্রাকৃতিক টেক্সচার অক্ষুণ্ণ রেখে একটি পরিষ্কার ও
+        ফ্রেশ ফিনিশ নিশ্চিত করা হয়। একই সাথে এটি shrinkage control করতে সাহায্য করে,
+        ফলে পরিধানের পর সাইজ পরিবর্তনের ঝুঁকি কমে যায়।
+      </p>
+
+      <p>
+        যেখানে রঙ বা ফ্যাশন ইফেক্ট পরিবর্তনের প্রয়োজন নেই, বরং পরিষ্কার,
+        সফট ও কমফোর্টেবল ফিল দরকার—সেই সব পোশাকের জন্য এই ওয়াশ সবচেয়ে উপযোগী।
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Key Benefits -->
+  <div class="wash-benefits">
+
+    <!-- English Benefits -->
+    <div class="lang-en">
+      <h4>✔ Key Benefits</h4>
+      <ul>
+        <li>Complete removal of surface dust and dirt</li>
+        <li>Natural fabric feel remains intact</li>
+        <li>Effective shrinkage control</li>
+        <li>Buyer inspection-friendly finish</li>
+        <li>Cost-effective washing solution</li>
+      </ul>
+    </div>
+
+    <!-- Bangla Benefits -->
+    <div class="lang-bn">
+      <h4>✔ প্রধান সুবিধাসমূহ</h4>
+      <ul>
+        <li>সারফেস ডাস্ট ও ময়লা সম্পূর্ণভাবে দূর করে</li>
+        <li>কাপড়ের প্রাকৃতিক ফিল বজায় থাকে</li>
+        <li>কার্যকর Shrinkage Control</li>
+        <li>বায়ার ইন্সপেকশন উপযোগী ফিনিশ</li>
+        <li>খরচ-সাশ্রয়ী ওয়াশিং সমাধান</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Recommended For -->
+  <div class="wash-recommended">
+
+    <!-- English Recommended -->
+    <div class="lang-en">
+      <h4>✔ Recommended For</h4>
+      <ul>
+        <li>Basic T-Shirt</li>
+        <li>Light Knit Garments</li>
+        <li>Casual Wear</li>
+        <li>Daily Wear Items</li>
+      </ul>
+      <p>
+        <strong>Ideal for bulk production where consistency and cleanliness matter most.</strong>
+      </p>
+    </div>
+
+    <!-- Bangla Recommended -->
+    <div class="lang-bn">
+      <h4>✔ উপযুক্ত পণ্য</h4>
+      <ul>
+        <li>বেসিক টি-শার্ট</li>
+        <li>হালকা নিট গার্মেন্টস</li>
+        <li>ক্যাজুয়াল পোশাক</li>
+        <li>দৈনন্দিন ব্যবহারের পোশাক</li>
+      </ul>
+      <p>
+        <strong>📌 বাল্ক প্রোডাকশনের জন্য আদর্শ, যেখানে ধারাবাহিকতা ও পরিচ্ছন্নতা সবচেয়ে গুরুত্বপূর্ণ।</strong>
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+    <div class="grid-4">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ================================
+     🧴 Enzyme Wash Section
+     ================================ -->
+<section id="enzyme-wash" class="wash-service fade-section">
+
+  <!-- 🔹 Section Header -->
+  <div class="wash-title">
+
+    <!-- English Title -->
+    <div class="lang-en">
+      <h2>🧴 Enzyme Wash</h2>
+      <p class="muted">Soft Touch. Clean Look. Premium Feel.</p>
+    </div>
+
+    <!-- Bangla Title -->
+    <div class="lang-bn">
+      <h2>🧴 এনজাইম ওয়াশ</h2>
+      <p class="muted">নরম স্পর্শ • পরিষ্কার লুক • প্রিমিয়াম ফিল</p>
+    </div>
+
+  </div>
+
+  <!-- 🔹 Accordion Card -->
+  <div class="card">
+
+    <!-- Accordion Button -->
+    <!-- data-target দিয়ে নিচের acc-body কে control করা হয় -->
+    <button class="acc-btn" data-target="enzyme-acc">
+      <div>
+        <h3 class="lang-en">Enzyme Wash</h3>
+        <h3 class="lang-bn">এনজাইম ওয়াশ</h3>
+      </div>
+
+      <span class="badge lang-en">Medium Risk</span>
+      <span class="badge lang-bn">মাঝারি ঝুঁকি</span>
+    </button>
+
+    <!-- Accordion Body -->
+    <div id="enzyme-acc" class="acc-body">
+      <div class="content">
+
+        <!-- Meta Info -->
+        <!-- এখানে ব্যবহৃত কেমিক্যাল ও সময় দেখানো হয় -->
+        <div class="meta">
+          <span class="chip lang-en">Water • Enzyme • Detergent • Softener</span>
+          <span class="chip lang-bn">পানি • এনজাইম • ডিটারজেন্ট • সফটনার</span>
+
+          <span class="badge lang-en">30–60 min</span>
+          <span class="badge lang-bn">৩০–৬০ মিনিট</span>
+        </div>
+
+        <!-- Process Steps -->
+        <div class="steps">
+          <h4 class="lang-en">Process Steps</h4>
+          <h4 class="lang-bn">প্রক্রিয়ার ধাপ</h4>
+
+          <!-- English Steps -->
+          <ul class="lang-en">
+            <li>Load garments into washing machine</li>
+            <li>Add water and set required temperature</li>
+            <li>Add enzyme and mild detergent</li>
+            <li>Run wash for controlled time</li>
+            <li>Rinse thoroughly to stop enzyme action</li>
+            <li>Apply softener, extract and dry</li>
+          </ul>
+
+          <!-- Bangla Steps -->
+          <ul class="lang-bn">
+            <li>ওয়াশিং  মেশিনে লোড করুন</li>
+            <li>পানি দিয়ে নির্ধারিত তাপমাত্রা সেট করুন</li>
+            <li>এনজাইম ও হালকা ডিটারজেন্ট যোগ করুন</li>
+            <li>নির্দিষ্ট সময় ওয়াশ চালান</li>
+            <li>এনজাইম অ্যাকশন বন্ধ করতে ভালোভাবে রিন্স করুন</li>
+            <li>সফটনার দিয়ে পানি ঝরিয়ে ড্রাই করুন</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 Description -->
+  <div class="wash-description">
+
+    <!-- English Description -->
+    <p class="lang-en">
+      Enzyme Wash improves fabric softness and appearance by removing surface
+      fibers, giving garments a smooth, clean, and premium finish.
+    </p>
+
+    <!-- Bangla Description -->
+    <p class="lang-bn">
+      এনজাইম ওয়াশ কাপড়ের উপরিভাগের অতিরিক্ত ফাইবার দূর করে,
+      গার্মেন্টসকে আরও নরম, পরিষ্কার ও প্রিমিয়াম ফিনিশ প্রদান করে।
+    </p>
+
+  </div>
+
+  <!-- Description -->
+  <div class="wash-description">
+
+    <!-- English Description -->
+    <div class="lang-en">
+      <p>
+        <strong>Enzyme Wash</strong> is a bio-polishing process that removes protruding
+        fibers and fuzz from the fabric surface, resulting in a smoother and cleaner look.
+      </p>
+
+      <p>
+        This wash improves fabric softness, enhances comfort, and reduces pilling without
+        damaging the core structure of the garment.
+      </p>
+
+      <p>
+        It is widely used to upgrade basic garments into premium-quality products.
+      </p>
+    </div>
+
+    <!-- Bangla Description -->
+    <div class="lang-bn">
+      <p>
+        <strong>এনজাইম ওয়াশ</strong> একটি বায়ো-পলিশিং প্রক্রিয়া, যা কাপড়ের উপরিভাগের
+        অতিরিক্ত লোম ও ফাজ দূর করে কাপড়কে মসৃণ ও পরিষ্কার করে তোলে।
+      </p>
+
+      <p>
+        এই ওয়াশ কাপড়ের সফটনেস ও কমফোর্ট বৃদ্ধি করে এবং পিলিং কমায়,
+        কিন্তু কাপড়ের মূল স্ট্রাকচার ক্ষতিগ্রস্ত করে না।
+      </p>
+
+      <p>
+        সাধারণ গার্মেন্টসকে প্রিমিয়াম মানে উন্নীত করতে এই ওয়াশ ব্যাপকভাবে ব্যবহৃত হয়।
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Key Benefits -->
+  <div class="wash-benefits">
+
+    <!-- English Benefits -->
+    <div class="lang-en">
+      <h4>✔ Key Benefits</h4>
+      <ul>
+        <li>Removes fabric fuzz and hairiness</li>
+        <li>Improves softness and smoothness</li>
+        <li>Reduces pilling tendency</li>
+        <li>Enhances garment appearance</li>
+        <li>Buyer-approved premium finish</li>
+      </ul>
+    </div>
+
+    <!-- Bangla Benefits -->
+    <div class="lang-bn">
+      <h4>✔ প্রধান সুবিধাসমূহ</h4>
+      <ul>
+        <li>কাপড়ের লোম ও ফাজ দূর করে</li>
+        <li>সফট ও মসৃণ ফিল প্রদান করে</li>
+        <li>পিলিং হওয়ার সম্ভাবনা কমায়</li>
+        <li>গার্মেন্টসের লুক উন্নত করে</li>
+        <li>বায়ার-অপ্রুভড প্রিমিয়াম ফিনিশ</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Recommended For -->
+  <div class="wash-recommended">
+
+    <!-- English Recommended -->
+    <div class="lang-en">
+      <h4>✔ Recommended For</h4>
+      <ul>
+        <li>Knitted T-Shirts</li>
+        <li>Polo Shirts</li>
+        <li>Casual & Fashion Wear</li>
+        <li>Export Quality Garments</li>
+      </ul>
+      <p>
+        <strong>Perfect for garments where softness and surface quality matter.</strong>
+      </p>
+    </div>
+
+    <!-- Bangla Recommended -->
+    <div class="lang-bn">
+      <h4>✔ উপযুক্ত পণ্য</h4>
+      <ul>
+        <li>নিট টি-শার্ট</li>
+        <li>পোলো শার্ট</li>
+        <li>ক্যাজুয়াল ও ফ্যাশন পোশাক</li>
+        <li>এক্সপোর্ট কোয়ালিটি গার্মেন্টস</li>
+      </ul>
+      <p>
+        <strong>📌 যেখানে সফটনেস ও সারফেস কোয়ালিটি গুরুত্বপূর্ণ—সেখানে আদর্শ।</strong>
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+    <div class="grid-4">
+  
+
+<!-- ================================
+     🪨 Stone Wash Section
+     ================================ -->
+<section id="stone-wash" class="wash-service fade-section">
+
+  <!-- 🔹 Section Header -->
+  <div class="wash-title">
+
+    <!-- English Title -->
+    <div class="lang-en">
+      <h2>🪨 Stone Wash</h2>
+      <p class="muted">Vintage Look. Faded Effect. Market Favorite.</p>
+    </div>
+
+    <!-- Bangla Title -->
+    <div class="lang-bn">
+      <h2>🪨 স্টোন ওয়াশ</h2>
+      <p class="muted">ভিন্টেজ লুক • ফেডেড ইফেক্ট • মার্কেট ফেভারিট</p>
+    </div>
+
+  </div>
+
+  <!-- 🔹 Accordion Card -->
+  <div class="card">
+
+    <!-- Accordion Button -->
+    <!-- data-target এর মাধ্যমে নিচের acc-body control হয় -->
+    <button class="acc-btn" data-target="stone-acc">
+      <div>
+        <h3 class="lang-en">Stone Wash</h3>
+        <h3 class="lang-bn">স্টোন ওয়াশ</h3>
+      </div>
+
+      <span class="badge lang-en">High Risk</span>
+      <span class="badge lang-bn">উচ্চ ঝুঁকি</span>
+    </button>
+
+    <!-- Accordion Body -->
+    <div id="stone-acc" class="acc-body">
+      <div class="content">
+
+        <!-- Meta Info -->
+        <!-- এখানে ব্যবহৃত উপকরণ ও আনুমানিক সময় -->
+        <div class="meta">
+          <span class="chip lang-en">Water • Pumice Stone • Detergent • Softener</span>
+          <span class="chip lang-bn">পানি • পিউমিস স্টোন • ডিটারজেন্ট • সফটনার</span>
+
+          <span class="badge lang-en">30–90 min</span>
+          <span class="badge lang-bn">৩০–৯০ মিনিট</span>
+        </div>
+
+        <!-- Process Steps -->
+        <div class="steps">
+          <h4 class="lang-en">Process Steps</h4>
+          <h4 class="lang-bn">প্রক্রিয়ার ধাপ</h4>
+
+          <!-- English Steps -->
+          <ul class="lang-en">
+            <li>Load garments and pumice stones into machine</li>
+            <li>Add water and detergent</li>
+            <li>Run wash at controlled speed and time</li>
+            <li>Monitor fading and abrasion level</li>
+            <li>Remove stones and rinse thoroughly</li>
+            <li>Apply softener, extract and dry</li>
+          </ul>
+
+          <!-- Bangla Steps -->
+          <ul class="lang-bn">
+            <li>গার্মেন্টস ও পিউমিস স্টোন মেশিনে লোড করুন</li>
+            <li>পানি ও ডিটারজেন্ট যোগ করুন</li>
+            <li>নির্ধারিত স্পিড ও সময়ে ওয়াশ চালান</li>
+            <li>ফেডিং ও অ্যাব্রেশন লেভেল পর্যবেক্ষণ করুন</li>
+            <li>স্টোন বের করে ভালোভাবে রিন্স করুন</li>
+            <li>সফটনার দিয়ে পানি ঝরিয়ে ড্রাই করুন</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- Description -->
+  <div class="wash-description">
+
+    <!-- English Description -->
+    <div class="lang-en">
+      <p>
+        <strong>Stone Wash</strong> is a mechanical washing process where pumice stones
+        are used to create a worn, vintage appearance on garments.
+      </p>
+
+      <p>
+        The friction between stone and fabric removes surface fibers and partially
+        fades the color, giving a unique, uneven look.
+      </p>
+
+      <p>
+        This wash is highly popular in denim and fashion garments for its rugged style.
+      </p>
+    </div>
+
+    <!-- Bangla Description -->
+    <div class="lang-bn">
+      <p>
+        <strong>স্টোন ওয়াশ</strong> হলো একটি মেকানিক্যাল ওয়াশিং প্রক্রিয়া, যেখানে
+        পিউমিস স্টোন ব্যবহার করে কাপড়ে পুরনো ও রাফ লুক তৈরি করা হয়।
+      </p>
+
+      <p>
+        স্টোন ও কাপড়ের ঘর্ষণে উপরিভাগের ফাইবার উঠে যায় এবং রঙ আংশিকভাবে ফেড হয়,
+        ফলে একটি ইউনিক ও অসমান টেক্সচার তৈরি হয়।
+      </p>
+
+      <p>
+        বিশেষ করে ডেনিম ও ফ্যাশন গার্মেন্টসে এই ওয়াশ ব্যাপক জনপ্রিয়।
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Key Benefits -->
+  <div class="wash-benefits">
+
+    <!-- English Benefits -->
+    <div class="lang-en">
+      <h4>✔ Key Benefits</h4>
+      <ul>
+        <li>Creates vintage and worn-out appearance</li>
+        <li>Unique faded and textured look</li>
+        <li>Improves softness after softener treatment</li>
+        <li>High fashion appeal</li>
+        <li>Buyer-specific effect customization</li>
+      </ul>
+    </div>
+
+    <!-- Bangla Benefits -->
+    <div class="lang-bn">
+      <h4>✔ প্রধান সুবিধাসমূহ</h4>
+      <ul>
+        <li>ভিন্টেজ ও ব্যবহৃত লুক তৈরি করে</li>
+        <li>ইউনিক ফেডেড ও টেক্সচারড ফিনিশ</li>
+        <li>সফটনারের পর কাপড় নরম হয়</li>
+        <li>ফ্যাশন ভ্যালু বৃদ্ধি করে</li>
+        <li>বায়ার অনুযায়ী ইফেক্ট কাস্টমাইজ করা যায়</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Recommended For -->
+  <div class="wash-recommended">
+
+    <!-- English Recommended -->
+    <div class="lang-en">
+      <h4>✔ Recommended For</h4>
+      <ul>
+        <li>Denim Jeans</li>
+        <li>Jackets</li>
+        <li>Casual & Streetwear</li>
+        <li>Heavy Fabric Garments</li>
+      </ul>
+      <p>
+        <strong>Best for garments where rugged, faded style is required.</strong>
+      </p>
+    </div>
+
+    <!-- Bangla Recommended -->
+    <div class="lang-bn">
+      <h4>✔ উপযুক্ত পণ্য</h4>
+      <ul>
+        <li>ডেনিম জিন্স</li>
+        <li>জ্যাকেট</li>
+        <li>স্ট্রিট ও ক্যাজুয়াল পোশাক</li>
+        <li>হেভি ফ্যাব্রিক গার্মেন্টস</li>
+      </ul>
+      <p>
+        <strong>📌 যেখানে রাফ ও ফেডেড স্টাইল প্রয়োজন—সেখানে আদর্শ।</strong>
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+    <div class="grid-4">
+  
+
+
+
+
+
+
+<div   class="fade-section"    id="belish"       class="wash-service bleach-wash">
+
+  <!-- Section Title -->
+  <div class="wash-title">
+
+    <!-- English Title -->
+    <div class="lang-en">
+      <h2>🧴 Bleach Wash</h2>
+      <h4>High Fading. Strong Impact. Buyer-Driven Look.</h4>
+    </div>
+
+    <!-- Bangla Title -->
+    <div class="lang-bn">
+      <h2>🧴 ব্লিচ ওয়াশ</h2>
+      <h4>হাই ফেডিং। স্ট্রং ইমপ্যাক্ট। বায়ার-ড্রিভেন লুক।</h4>
+    </div>
+
+  </div>
+
+  <section class="card">
+    <button class="acc-btn" data-target="bleach">
+      <div>
+        <h2 class="lang-en">Bleach Wash</h2>
+        <div class="lang-bn muted">ব্লিচ ব্যবহার করে শক্তিশালী কালার ফেডিং</div>
+      </div>
+      <div class="lang-en badge">High Risk</div>
+      <div class="lang-bn badge">উচ্চ ঝুঁকি</div>
+    </button>
+
+    <div id="bleach" class="acc-body">
+      <div class="content">
+
+        <div class="meta">
+          <div class="lang-en chip">
+            Chemicals: Sodium Hypochlorite, Detergent, Anti-Chlorine, Softener
+          </div>
+          <div class="lang-bn chip">
+            কেমিক্যাল: সোডিয়াম হাইপোক্লোরাইট, ডিটারজেন্ট, অ্যান্টি-ক্লোরিন, সফটনার
+          </div>
+          <div class="lang-en badge">Time: 20–45 minutes</div>
+          <div class="lang-bn badge">সময়: ২০–৪৫ মিনিট</div>
+        </div>
+
+        <div class="steps">
+          <div class="lang-en">Process Steps:</div>
+          <div class="lang-bn">প্রক্রিয়ার ধাপসমূহ:</div>
+
+          <div class="lang-en">Load garments into the washing machine.</div>
+          <div class="lang-bn">গার্মেন্টস ওয়াশিং মেশিনে লোড করুন।</div>
+
+          <div class="lang-en">
+            Apply diluted bleach solution and run wash at low temperature.
+          </div>
+          <div class="lang-bn">
+            নির্দিষ্ট অনুপাতে ব্লিচ মিশিয়ে কম তাপমাত্রায় ওয়াশ করুন।
+          </div>
+
+          <div class="lang-en">
+            Monitor shade continuously to avoid over-bleaching.
+          </div>
+          <div class="lang-bn">
+            অতিরিক্ত ফেডিং রোধে নিয়মিত শেড মনিটর করুন।
+          </div>
+
+          <div class="lang-en">
+            Neutralize chlorine using anti-chlorine treatment.
+          </div>
+          <div class="lang-bn">
+            অ্যান্টি-ক্লোরিন দিয়ে ব্লিচ নিউট্রালাইজ করুন।
+          </div>
+
+          <div class="lang-en">
+            Rinse thoroughly, apply softener, hydro extract, then dry.
+          </div>
+          <div class="lang-bn">
+            ভালভাবে রিন্স করে সফটনার দিন, পানি ঝরিয়ে ড্রাই করুন।
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Description -->
+  <div class="wash-description">
+
+    <!-- English Description -->
+    <div class="lang-en">
+      <p>
+        <strong>Bleach Wash</strong> is a chemical washing process used to achieve
+        strong color fading and lighter shades on garments.
+      </p>
+
+      <p>
+        It is commonly applied to denim to create light blue or washed-out effects.
+      </p>
+
+      <p>
+        Precise control is critical—over-bleaching can weaken fabric strength
+        and cause yellowing.
+      </p>
+    </div>
+
+    <!-- Bangla Description -->
+    <div class="lang-bn">
+      <p>
+        <strong>ব্লিচ ওয়াশ</strong> হলো একটি কেমিক্যাল ওয়াশিং প্রক্রিয়া, যা
+        গার্মেন্টসের রঙ হালকা ও ফেডেড করার জন্য ব্যবহৃত হয়।
+      </p>
+
+      <p>
+        বিশেষ করে ডেনিম গার্মেন্টসে লাইট ব্লু বা ওয়াশড লুক আনতে এই ওয়াশ জনপ্রিয়।
+      </p>
+
+      <p>
+        সঠিক কন্ট্রোল না থাকলে কাপড় দুর্বল হয়ে যেতে পারে এবং ইয়েলোয়িং সমস্যা দেখা দিতে পারে।
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Key Benefits -->
+  <div class="wash-benefits">
+
+    <!-- English Benefits -->
+    <div class="lang-en">
+      <h4>✔ Key Benefits</h4>
+      <ul>
+        <li>Strong and visible color fading</li>
+        <li>Creates light and washed-out shades</li>
+        <li>High fashion and buyer demand</li>
+        <li>Custom shade control possible</li>
+        <li>Effective for denim garments</li>
+      </ul>
+    </div>
+
+    <!-- Bangla Benefits -->
+    <div class="lang-bn">
+      <h4>✔ প্রধান সুবিধাসমূহ</h4>
+      <ul>
+        <li>স্ট্রং ও দৃশ্যমান কালার ফেডিং</li>
+        <li>হালকা ও ওয়াশড শেড তৈরি করে</li>
+        <li>উচ্চ ফ্যাশন ভ্যালু</li>
+        <li>বায়ার অনুযায়ী শেড কন্ট্রোল সম্ভব</li>
+        <li>ডেনিম গার্মেন্টসের জন্য কার্যকর</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Recommended For -->
+  <div class="wash-recommended">
+
+    <!-- English Recommended -->
+    <div class="lang-en">
+      <h4>✔ Recommended For</h4>
+      <ul>
+        <li>Denim Jeans</li>
+        <li>Jackets</li>
+        <li>Fashion Denim Wear</li>
+        <li>Light Shade Garments</li>
+      </ul>
+      <p>
+        <strong>Requires strict process control and skilled operators.</strong>
+      </p>
+    </div>
+
+    <!-- Bangla Recommended -->
+    <div class="lang-bn">
+      <h4>✔ উপযুক্ত পণ্য</h4>
+      <ul>
+        <li>ডেনিম জিন্স</li>
+        <li>জ্যাকেট</li>
+        <li>ফ্যাশন ডেনিম পোশাক</li>
+        <li>হালকা রঙের গার্মেন্টস</li>
+      </ul>
+      <p>
+        <strong>📌 দক্ষ অপারেটর ও কঠোর প্রসেস কন্ট্রোল আবশ্যক।</strong>
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+  </div>
+    <div class="grid-4">
+  
+
+
+
+
+<!-- ================================
+     ⚗️ Acid Wash Section
+     ================================ -->
+<section id="acid-wash" class="wash-service fade-section">
+
+  <!-- 🔹 Section Header -->
+  <div class="wash-title">
+
+    <!-- English Title -->
+    <div class="lang-en">
+      <h2>⚗️ Acid Wash</h2>
+      <p class="muted">High Contrast. Sharp Fading. Statement Look.</p>
+    </div>
+
+    <!-- Bangla Title -->
+    <div class="lang-bn">
+      <h2>⚗️ অ্যাসিড ওয়াশ</h2>
+      <p class="muted">হাই কনট্রাস্ট • শার্প ফেডিং • স্টেটমেন্ট লুক</p>
+    </div>
+
+  </div>
+
+  <!-- 🔹 Accordion Card -->
+  <div class="card">
+
+    <!-- Accordion Button -->
+    <!-- data-target নিচের acc-body কে toggle করে -->
+    <button class="acc-btn" data-target="acid-acc">
+      <div>
+        <h3 class="lang-en">Acid Wash</h3>
+        <h3 class="lang-bn">অ্যাসিড ওয়াশ</h3>
+      </div>
+
+      <span class="badge lang-en">Very High Risk</span>
+      <span class="badge lang-bn">অত্যন্ত ঝুঁকিপূর্ণ</span>
+    </button>
+
+    <!-- Accordion Body -->
+    <div id="acid-acc" class="acc-body">
+      <div class="content">
+
+        <!-- Meta Info -->
+        <!-- Acid wash এ পানির পরিমাণ কম, কন্ট্রোল বেশি -->
+        <div class="meta">
+          <span class="chip lang-en">Pumice Stone • Acid Chemical • Neutralizer</span>
+          <span class="chip lang-bn">পিউমিস স্টোন • অ্যাসিড কেমিক্যাল • নিউট্রালাইজার</span>
+
+          <span class="badge lang-en">20–45 min</span>
+          <span class="badge lang-bn">২০–৪৫ মিনিট</span>
+        </div>
+
+        <!-- Process Steps -->
+        <div class="steps">
+          <h4 class="lang-en">Process Steps</h4>
+          <h4 class="lang-bn">প্রক্রিয়ার ধাপ</h4>
+
+          <!-- English Steps -->
+          <ul class="lang-en">
+            <li>Soak pumice stones with acid solution</li>
+            <li>Remove excess liquid from stones</li>
+            <li>Load garments and treated stones into machine</li>
+            <li>Run wash with minimal water</li>
+            <li>Monitor contrast and fading closely</li>
+            <li>Neutralize, rinse, extract and dry</li>
+          </ul>
+
+          <!-- Bangla Steps -->
+          <ul class="lang-bn">
+            <li>পিউমিস স্টোন অ্যাসিড সল্যুশনে ভিজিয়ে নিন</li>
+            <li>স্টোন থেকে অতিরিক্ত তরল ঝরিয়ে ফেলুন</li>
+            <li>গার্মেন্টস ও ট্রিটেড স্টোন মেশিনে লোড করুন</li>
+            <li>অল্প পানিতে ওয়াশ চালান</li>
+            <li>কনট্রাস্ট ও ফেডিং সতর্কভাবে পর্যবেক্ষণ করুন</li>
+            <li>নিউট্রালাইজ করে রিন্স, এক্সট্রাক্ট ও ড্রাই করুন</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- Description -->
+  <div class="wash-description">
+
+    <!-- English Description -->
+    <div class="lang-en">
+      <p>
+        <strong>Acid Wash</strong> is a special washing technique that produces
+        high-contrast, cloudy, and marbled effects on garments.
+      </p>
+
+      <p>
+        Unlike normal bleaching, color removal happens unevenly, creating
+        dramatic light-and-dark patterns.
+      </p>
+
+      <p>
+        This wash demands strict control and experienced handling to avoid
+        fabric damage.
+      </p>
+    </div>
+
+    <!-- Bangla Description -->
+    <div class="lang-bn">
+      <p>
+        <strong>অ্যাসিড ওয়াশ</strong> হলো একটি বিশেষ ওয়াশিং টেকনিক, যার মাধ্যমে
+        কাপড়ে হাই-কনট্রাস্ট, ক্লাউডি ও মার্বেল ইফেক্ট তৈরি করা হয়।
+      </p>
+
+      <p>
+        সাধারণ ব্লিচ ওয়াশের মতো সমান ফেডিং না হয়ে এখানে অসমানভাবে রঙ উঠে যায়,
+        ফলে ডার্ক ও লাইট শেডের নাটকীয় প্যাটার্ন তৈরি হয়।
+      </p>
+
+      <p>
+        এই ওয়াশে সামান্য ভুলেই কাপড় নষ্ট হতে পারে, তাই অভিজ্ঞ কন্ট্রোল অপরিহার্য।
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Key Benefits -->
+  <div class="wash-benefits">
+
+    <!-- English Benefits -->
+    <div class="lang-en">
+      <h4>✔ Key Benefits</h4>
+      <ul>
+        <li>High-contrast, clouded fashion effect</li>
+        <li>Unique, non-repeatable patterns</li>
+        <li>Strong visual impact</li>
+        <li>Premium streetwear appeal</li>
+        <li>High buyer attention value</li>
+      </ul>
+    </div>
+
+    <!-- Bangla Benefits -->
+    <div class="lang-bn">
+      <h4>✔ প্রধান সুবিধাসমূহ</h4>
+      <ul>
+        <li>হাই-কনট্রাস্ট ক্লাউডি ফ্যাশন লুক</li>
+        <li>প্রতিটি পিসে আলাদা ইউনিক প্যাটার্ন</li>
+        <li>দৃষ্টিনন্দন ও স্ট্রং ভিজুয়াল ইফেক্ট</li>
+        <li>প্রিমিয়াম স্ট্রিটওয়্যার অ্যাপিল</li>
+        <li>বায়ারের দৃষ্টি আকর্ষণ করে</li>
+      </ul>
+    </div>
+
+  </div>
+  
+  
+   </div>
+   
+   
+ 
+	 
+
+
+
+  </div>
+    <div class="grid-4">
+  
+	 
+   
+   
+<div   class="fade-section"   id="es"       class="wash-service enzyme-stone-wash">
+
+  <!-- Section Title -->
+  <div class="wash-title">
+
+    <!-- English Title -->
+    <div class="lang-en">
+      <h2>🧬🪨 Enzyme Stone Wash</h2>
+      <h4>Controlled Fading. Smooth Surface. Premium Denim.</h4>
+    </div>
+
+    <!-- Bangla Title -->
+    <div class="lang-bn">
+      <h2>🧬🪨 এনজাইম স্টোন ওয়াশ</h2>
+      <h4>কন্ট্রোলড ফেডিং। স্মুথ সারফেস। প্রিমিয়াম ডেনিম।</h4>
+    </div>
+
+  </div>
+
+  <section class="card">
+    <button class="acc-btn" data-target="enzyme-stone">
+      <div>
+        <h2 class="lang-en">Enzyme Stone Wash</h2>
+        <div class="lang-bn muted">
+          এনজাইম ও স্টোন মিলিয়ে ব্যালান্সড ফেডিং প্রসেস
+        </div>
+      </div>
+      <div class="lang-en badge">Medium–High Risk</div>
+      <div class="lang-bn badge">মাঝারি–উচ্চ ঝুঁকি</div>
+    </button>
+
+    <div id="enzyme-stone" class="acc-body">
+      <div class="content">
+
+        <div class="meta">
+          <div class="lang-en chip">
+            Materials: Pumice Stone, Cellulase Enzyme, Detergent, Softener
+          </div>
+          <div class="lang-bn chip">
+            উপকরণ: পিউমিস স্টোন, সেলুলেজ এনজাইম, ডিটারজেন্ট, সফটনার
+          </div>
+          <div class="lang-en badge">Time: 45–120 minutes</div>
+          <div class="lang-bn badge">সময়: ৪৫–১২০ মিনিট</div>
+        </div>
+
+        <div class="steps">
+          <div class="lang-en">Process Steps:</div>
+          <div class="lang-bn">প্রক্রিয়ার ধাপসমূহ:</div>
+
+          <div class="lang-en">
+            Load garments with pumice stones into the washing machine.
+          </div>
+          <div class="lang-bn">
+            গার্মেন্টসের সাথে পিউমিস স্টোন মেশিনে লোড করুন।
+          </div>
+
+          <div class="lang-en">
+            Add detergent and run initial stone wash cycle.
+          </div>
+          <div class="lang-bn">
+            ডিটারজেন্ট দিয়ে প্রাথমিক স্টোন ওয়াশ চালু করুন।
+          </div>
+
+          <div class="lang-en">
+            Add cellulase enzyme at controlled temperature and pH.
+          </div>
+          <div class="lang-bn">
+            নির্দিষ্ট তাপমাত্রা ও pH-এ সেলুলেজ এনজাইম যোগ করুন।
+          </div>
+
+          <div class="lang-en">
+            Enzyme removes surface fibers while stones create abrasion.
+          </div>
+          <div class="lang-bn">
+            এনজাইম সারফেস ফাইবার কাটে, স্টোন ফেডিং তৈরি করে।
+          </div>
+
+          <div class="lang-en">
+            Stop enzyme activity, remove stones, rinse, soften, hydro extract, dry.
+          </div>
+          <div class="lang-bn">
+            এনজাইম নিউট্রালাইজ করে স্টোন আলাদা করুন, রিন্স, সফটনার দিয়ে ড্রাই করুন।
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Description -->
+  <div class="wash-description">
+
+    <!-- English Description -->
+    <div class="lang-en">
+      <p>
+        <strong>Enzyme Stone Wash</strong> combines mechanical abrasion from stones
+        with biological action of enzymes to achieve controlled fading.
+      </p>
+
+      <p>
+        It reduces harsh damage while delivering a clean, smooth denim surface.
+      </p>
+
+      <p>
+        Widely used for premium denim and export-quality garments.
+      </p>
+    </div>
+
+    <!-- Bangla Description -->
+    <div class="lang-bn">
+      <p>
+        <strong>এনজাইম স্টোন ওয়াশ</strong> হলো স্টোন ও এনজাইমের সমন্বয়ে তৈরি
+        একটি কন্ট্রোলড ওয়াশিং প্রক্রিয়া।
+      </p>
+
+      <p>
+        এতে অতিরিক্ত ড্যামেজ কম হয় এবং কাপড় বেশি স্মুথ হয়।
+      </p>
+
+      <p>
+        প্রিমিয়াম ও এক্সপোর্ট কোয়ালিটি ডেনিমে এই ওয়াশ বেশি ব্যবহৃত হয়।
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Key Benefits -->
+  <div class="wash-benefits">
+
+    <!-- English Benefits -->
+    <div class="lang-en">
+      <h4>✔ Key Benefits</h4>
+      <ul>
+        <li>Balanced and controlled fading</li>
+        <li>Smoother fabric surface</li>
+        <li>Less fabric damage than stone wash</li>
+        <li>Premium and clean appearance</li>
+        <li>Export and buyer preferred</li>
+      </ul>
+    </div>
+
+    <!-- Bangla Benefits -->
+    <div class="lang-bn">
+      <h4>✔ প্রধান সুবিধাসমূহ</h4>
+      <ul>
+        <li>ব্যালান্সড ও কন্ট্রোলড ফেডিং</li>
+        <li>কাপড়ের সারফেস বেশি স্মুথ</li>
+        <li>স্টোন ওয়াশের তুলনায় কম ক্ষতি</li>
+        <li>প্রিমিয়াম ফিনিশ</li>
+        <li>বায়ার পছন্দের ওয়াশ</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Recommended For -->
+  <div class="wash-recommended">
+
+    <!-- English Recommended -->
+    <div class="lang-en">
+      <h4>✔ Recommended For</h4>
+      <ul>
+        <li>Premium Denim Jeans</li>
+        <li>Export Quality Garments</li>
+        <li>Fashion Denim Wear</li>
+        <li>Soft-Finish Products</li>
+      </ul>
+      <p>
+        <strong>Requires enzyme dosage & pH control.</strong>
+      </p>
+    </div>
+
+    <!-- Bangla Recommended -->
+    <div class="lang-bn">
+      <h4>✔ উপযুক্ত পণ্য</h4>
+      <ul>
+        <li>প্রিমিয়াম ডেনিম জিন্স</li>
+        <li>এক্সপোর্ট কোয়ালিটি পোশাক</li>
+        <li>ফ্যাশন ডেনিম</li>
+        <li>সফট ফিনিশ প্রোডাক্ট</li>
+      </ul>
+      <p>
+        <strong>📌 এনজাইম ডোজ ও pH কন্ট্রোল অত্যন্ত গুরুত্বপূর্ণ।</strong>
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		  
+   
+		
+		
+		
+		
+    </div>
+  </section>
+  
+  
+  <footer>
+    <div class="container">© <span id="year"></span> Garments Washing Ltd. All rights reserved.</div>
+  </footer> 
+
+
+
+  </main>
+
+  <script>
+  
+  //dropdown-menu//
+  const processLink = document.querySelector('.dropdown > a');
+  const dropdownMenu = document.querySelector('.dropdown-menu');
+
+  processLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    dropdownMenu.classList.toggle('show');
+  });
+
+
+  
+  //scroll-Effect//
+ 
+  const fadeSections = document.querySelectorAll('.fade-section');
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    },
+    {
+      threshold: 0.15
+    }
+  );
+
+  fadeSections.forEach(section => {
+    observer.observe(section);
+  });
+
+
+  
+  
+  
+  
+  
+  
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".lang-bn").forEach(el => el.style.display = "none");
+  });
+
+  
+  
+ 
+  // Default language: English
+  let currentLang = "en";
+
+  function toggleLanguage() {
+    const enElements = document.querySelectorAll(".lang-en");
+    const bnElements = document.querySelectorAll(".lang-bn");
+
+    if (currentLang === "en") {
+      // Show Bangla, hide English
+      enElements.forEach(el => el.style.display = "none");
+      bnElements.forEach(el => el.style.display = "block");
+      currentLang = "bn";
+    } else {
+      // Show English, hide Bangla
+      bnElements.forEach(el => el.style.display = "none");
+      enElements.forEach(el => el.style.display = "block");
+      currentLang = "en";
+    }
+  }
+
+  
+  
+  
+  
+    
+    // simple accordion
+    document.querySelectorAll('.acc-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const id = btn.getAttribute('data-target');
+        const body = document.getElementById(id);
+        const open = body.style.maxHeight && body.style.maxHeight !== '0px';
+        // close all
+        document.querySelectorAll('.acc-body').forEach(b=>{b.style.maxHeight = '0'; b.classList.remove('open')});
+        if(!open){
+          body.style.maxHeight = body.scrollHeight + 20 + 'px'; body.classList.add('open');
+        }
+      })
+    })
+    // open first by default
+    window.addEventListener('load',()=>{const f = document.querySelector('.acc-body'); if(f){f.style.maxHeight = f.scrollHeight + 20 + 'px'; f.classList.add('open')}})
+  
+  
+    // ছোট্ট JS: ডায়নামিক বছর সেট করা
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  
+  </body>
+</html>

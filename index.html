@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+ <html lang="bn">
+  <head>
+   <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <title>Garments Washing Company</title>
+      <!-- Google Font -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* =============================
+       🔧 বেসিক স্টাইল (রং, ফন্ট ইত্যাদি)
+       ============================= */
+    :root{
+      --bg:#0b132b;        /* ডার্ক নীল ব্যাকগ্রাউন্ড */
+      --ink:#0f172a;       /* টেক্সটের গাঢ় রং */
+      --muted:#6b7280;     /* হালকা টেক্সট */
+      --brand:#2563eb;     /* ব্র্যান্ড নীল */
+      --brand-2:#22c55e;   /* সেকেন্ডারি সবুজ */
+      --paper:#ffffff;     /* সাদা */
+      --soft:#f3f4f6;      /* সফট গ্রে */
+      --ring: rgba(37, 99, 235,.25);
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(2,6,23,.10);
+    }
+	
+	*{ box-sizing: border-box;
+	}
+  html{ scroll-behavior: smooth;
+  }
+  body{
+        margin:0;
+		font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:var(--ink); background:#ffffff;
+}
+a{ color:inherit; text-decoration: none; }
+.container{ width:min(1100px, 90%); margin-inline:auto; }
+
+/* =============================
+   🔝 হেডার/নাভ (স্টিকি + মোবাইল মেনু)
+   ============================= */
+header{
+  position: sticky; top:0; z-index: 50; background:rgba(255,255,255,.8); backdrop-filter: blur(10px); border-bottom:1px solid #e5e7eb;
+}
+.nav{ display:flex; align-items:center; justify-content: space-between; gap:16px; padding:14px 0; }
+.logo{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px; }
+.logo-badge{ width:40px; aspect-ratio:1; display:grid; place-items:center; background:var(--brand); color:white; border-radius:12px; font-weight:800; box-shadow: var(--shadow); }
+.menu{ display:flex; gap:22px; align-items:center; }
+.menu a{ padding:10px 12px; border-radius:10px; font-weight:600; color:#1f2937; }
+.menu a:hover{ background:#eef2ff; color:#1d4ed8; }
+.cta{ background:var(--brand); color:white; padding:10px 16px; border-radius:12px; font-weight:700; box-shadow: var(--shadow); }
+
+/* মোবাইল মেনু */
+.mobile-toggle{ display:none; border:1px solid #e5e7eb; padding:8px 10px; border-radius:10px; background:white; }
+@media (max-width: 800px){
+  .menu{ display:none; position:absolute; top:64px; right:5%; flex-direction:column; align-items:stretch; background:white; padding:12px; border:1px solid #e5e7eb; border-radius:14px; width:min(300px, 90vw); box-shadow: var(--shadow); }
+  .menu.open{ display:flex; }
+  .mobile-toggle{ display:inline-flex; }
+}
+
+/* =============================
+   🏠 হিরো সেকশন (বড় ব্যানার)
+   ============================= */
+.hero{
+  position: relative; overflow:hidden; isolation:isolate;
+  background: radial-gradient(1200px 600px at 70% -10%, #dbeafe 0%, transparent 70%) , #f8fafc;
+}
+.hero .wrap{ display:grid; grid-template-columns: 1.1fr .9fr; gap:40px; align-items:center; padding: min(11vh, 110px) 0; }
+.headline{ font-size: clamp(28px, 5vw, 52px); line-height:1.05; font-weight: 800; letter-spacing:-.5px; }
+.sub{ color:var(--muted); font-size: clamp(14px, 2.3vw, 18px); }
+.hero-btns{ display:flex; gap:14px; margin-top:18px; flex-wrap:wrap; }
+.btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius: 14px; font-weight:700; border:1px solid #d1d5db; background:white; }
+.btn.primary{ background:var(--brand); color:white; border-color:transparent; }
+.stats{ display:grid; grid-template-columns: repeat(3,1fr); gap:14px; margin-top:26px; }
+.stat{ background:white; border:1px solid #e5e7eb; border-radius:14px; padding:14px; text-align:center; box-shadow: var(--shadow); }
+.stat b{ font-size:20px; }
+.hero-visual{
+  border-radius: 20px; overflow:hidden; border:1px solid #e5e7eb; box-shadow: var(--shadow);
+  background:url('img/p-m1.jpg') center/cover no-repeat; aspect-ratio: 4/3;
+}
+
+ .hero-visual:hover{
+ background:url('img/p-m1.jpg') center/cover no-repeat; aspect-ratio: 4/3;
+  transform: scale(1.03);
+  box-shadow: 0 20px 40px rgba(15,23,42,0.12);
+}
+
+
+
+@media (max-width: 900px){ .hero .wrap{ grid-template-columns:1fr; } .hero-visual{ order:-1; } }
+
+/* =============================
+   🧪 সার্ভিস সেকশন
+   ============================= */
+section{ padding: 70px 0; }
+.section-head{ display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:26px; }
+.section-head h2{ font-size: clamp(22px, 3.5vw, 34px); margin:0; }
+.grid-4{ display:grid; grid-template-columns: repeat(4,1fr); gap:16px; }
+@media (max-width: 900px){ .grid-4{ grid-template-columns: repeat(2,1fr);} }
+@media (max-width: 520px){ .grid-4{ grid-template-columns: 1fr;} }
+
+.card{ background:white; border:1px solid #e5e7eb; border-radius: var(--radius); padding:18px; box-shadow: var(--shadow); transition: transform .15s ease; }
+.card:hover{ transform: translateY(-2px); }
+.svc-icon{ width:56px; height:56px; border-radius:14px; display:grid; place-items:center; background:#eff6ff; border:1px dashed #bfdbfe; margin-bottom:10px; }
+.svc-icon svg{ width:28px; height:28px; }
+.pill{ display:inline-block; padding:4px 10px; border-radius:999px; border:1px solid #e5e7eb; background:#f9fafb; font-size:12px; color:#374151; }
+
+/* =============================
+   👥 টিম (১৫ জন মালিক)
+   ============================= */
+.team{ display:grid; grid-template-columns: repeat(5,1fr); gap:16px; }
+@media (max-width: 1000px){ .team{ grid-template-columns: repeat(4,1fr);} }
+@media (max-width: 820px){ .team{ grid-template-columns: repeat(3,1fr);} }
+@media (max-width: 560px){ .team{ grid-template-columns: repeat(2,1fr);} }
+.member{ text-align:center; padding:14px; border:1px solid #e5e7eb; border-radius:16px; background:white; box-shadow: var(--shadow); }
+.avatar{ width:84px; aspect-ratio:1; border-radius:50%; object-fit:cover; display:block; margin: 6px auto 10px; border:3px solid #e5e7eb; }
+.role{ color:var(--muted); font-size:12px; }
+
+/* =============================
+   🖼️ গ্যালারি (Before/After)
+   ============================= */
+.gallery{ display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+@media (max-width: 820px){ .gallery{ grid-template-columns: repeat(2,1fr);} }
+@media (max-width: 520px){ .gallery{ grid-template-columns: 1fr;} }
+.shot{ position:relative; overflow:hidden; border-radius:18px; border:1px solid #e5e7eb; }
+.shot img{ width:100%; height:100%; object-fit:cover; display:block; aspect-ratio: 4/3; transition: transform .3s ease; }
+.shot:hover img{ transform: scale(1.05); }
+.tag{ position:absolute; left:10px; top:10px; background:rgba(17,24,39,.8); color:white; font-size:12px; padding:4px 8px; border-radius:999px; }
+
+/* =============================
+   📝 কন্টাক্ট ফর্ম
+   ============================= */
+.contact{ display:grid; grid-template-columns: 1.1fr .9fr; gap:24px; }
+@media (max-width: 900px){ .contact{ grid-template-columns: 1fr; } }
+.panel{ background:white; border:1px solid #e5e7eb; border-radius:18px; padding:18px; box-shadow: var(--shadow); }
+label{ display:block; font-weight:600; margin:10px 0 6px; }
+input, textarea, select{ width:100%; padding:12px 14px; border:1px solid #e5e7eb; border-radius:12px; font:inherit; }
+input:focus, textarea:focus, select:focus{ outline:2px solid var(--ring); border-color:#bfdbfe; }
+textarea{ min-height:120px; resize: vertical; }
+
+footer{ margin-top:40px; padding:22px 0; border-top:1px solid #e5e7eb; color:#6b7280; }
+
+  </style>
+</head>
+<body>
+  <!-- =============================
+       🔝 নাভবার: লোগো + মেনু
+       ============================= -->
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo" aria-label="Brand home">
+        <span class="logo-badge">G/B</span>
+        <span>Garments Washing</span>
+      </a>
+      <nav class="menu" id="menu">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#team">Owners</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact" class="cta">Get Quote</a>
+      </nav>
+      <button class="mobile-toggle" aria-label="Open menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    </div>
+  </header>  <!-- =============================
+       🏠 হিরো সেকশন: টাইটেল + ইমেজ
+       ============================= -->  <section class="hero">
+    <div class="container wrap">
+      <div>
+        <h1 class="headline">Premium Garment <span style="color:var(--brand)">Washing</span> & Finishing</h1>
+        <p class="sub">ইনজাইম, স্টোন, অ্যাসিড, ব্লিচ—সব ধরণের প্রফেশনাল ওয়াশিং সার্ভিস আমরা দেই। সময়মতো ডেলিভারি, কনসিস্টেন্ট কোয়ালিটি।</p>
+        <div class="hero-btns">
+          <a class="btn primary" href="costing.html">costing</a>
+          <a class="btn" href="servises.html.">Services</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>150+</b><div>Brand Clients</div></div>
+          <div class="stat"><b>25k+</b><div>Orders Delivered</div></div>
+          <div class="stat"><b>12yrs</b><div>Industry Experience</div></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true"></div>
+    </div>
+  </section>  <!-- =============================
+       🧪 সার্ভিস সেকশন
+       ============================= -->  <section id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Our Services</h2>
+        <span class="pill">লিড-টাইম: 3–7 দিন</span>
+      </div>
+      <div class="grid-4">
+        <!-- 🔹 সার্ভিস কার্ড ১: Enzyme Wash -->
+        <article class="card">
+          <div class="svc-icon" aria-hidden="true">
+            <!-- ফ্রি SVG আইকন (কেমিক্যাল ফ্লাস্ক) -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 3h6"></path><path d="M10 3v3l-6 9a5 5 0 0 0 4 8h8a5 5 0 0 0 4-8l-6-9V3"></path>
+            </svg>
+          </div>
+          <h3>Enzyme Wash</h3>
+          <p class="sub">সফ্ট হ্যান্ডফিল ও ফেডেড লুকের জন্য বায়ো-এনজাইম ট্রিটমেন্ট।</p>
+        </article>
+        <!-- 🔹 সার্ভিস কার্ড ২: Stone Wash -->
+        <article class="card">
+          <div class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 16l8-12 8 12-8 4-8-4z"/>
+            </svg>
+          </div>
+          <h3>Stone Wash</h3>
+          <p class="sub">পিউমিস স্টোন দিয়ে ভিনটেজ ও ডিস্ট্রেসড ইফেক্ট।</p>
+        </article>
+        <!-- 🔹 সার্ভিস কার্ড ৩: Acid Wash -->
+        <article class="card">
+          <div class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/><path d="M12 7v6l3 3"/>
+            </svg>
+          </div>
+          <h3>Acid Wash</h3>
+          <p class="sub">অনিয়মিত কনট্রাস্ট প্যাটার্ন, ফ্যাশন গ্রেড লুক।</p>
+        </article>
+        <!-- 🔹 সার্ভিস কার্ড ৪: Bleach Wash -->
+        <article class="card">
+          <div class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18"/><path d="M8 21V9l4-6 4 6v12"/>
+            </svg>
+          </div>
+          <h3>Bleach Wash</h3>
+          <p class="sub">উজ্জ্বল ফেড ও ক্লিন টোন পেতে কন্ট্রোলড ব্লিচিং।</p>
+        </article>
+      </div>
+    </div>
+  </section>  <!-- =============================
+       🔄 প্রসেস ওয়ার্কফ্লো (ধাপগুলো)
+       ============================= -->  <section id="process" style="background:var(--soft)">
+    <div class="container">
+      <div class="section-head"><h2>Process Workflow</h2></div>
+      <div class="grid-4">
+        <div class="card"><h3>01. Inspection</h3><p class="sub">ফ্যাব্রিক/গার্মেন্টস চেক & বাল্ক অর্ডার কনফার্মেশন।</p></div>
+        <div class="card"><h3>02. Recipe Setup</h3><p class="sub">কেমিক্যাল ডোজিং, তাপমাত্রা, সময়—সব কিছুর SOP ফিক্স।</p></div>
+        <div class="card"><h3>03. Washing</h3><p class="sub">ফ্রন্ট-লোড ইন্ডাস্ট্রিয়াল মেশিনে কন্ট্রোল্ড প্রসেসিং।</p></div>
+        <div class="card"><h3>04. QC & Packing</h3><p class="sub">শ্রিংকেজ/শেড ম্যাচিং টেস্ট, তারপর প্যাকিং ও ডেলিভারি।</p></div>
+      </div>
+    </div>
+  </section>  <!-- =============================
+       👥 ১৫ জন মালিকের গ্রিড
+       ============================= -->  <section id="team">
+    <div class="container">
+      <div class="section-head"><h2>Our Owners (15)</h2><span class="pill">ডিরেক্টর বোর্ড</span></div>
+      <div class="team">
+        <!-- নোট: নিচের ছবিগুলো placeholder. আপনারা চাইলে নিজেরা ছবি/নাম বসাবেন -->
+        <div class="member"><img class="avatar" src="https://i.pravatar.cc/160?img=11" alt="Owner"/><div><b>Owner 01</b></div><div class="role">Chairman</div></div>
+        <div class="member"><img class="avatar" src="https://i.pravatar.cc/160?img=12" alt="Owner"/><div><b>Owner 02</b></div><div class="role">Managing Director</div></div>
+        <div class="member"><img class="avatar" src="https://i.pravatar.cc/160?img=13" alt="Owner"/><div><b>Owner 03</b></div><div class="role">Director</div></div>
+        <div class="member"><img class="avatar" src="https://i.pravatar.cc/160?img=14" alt="Owner"/><div><b>Owner 04</b></div><div class="role">Director</div></div>
+        <div class="member"><img class="avatar" src="https://i.pravatar.cc/160?img=15" alt="Owner"/><div><b>Owner 05</b></div><div class="role">Director</div></div>
+        <div class="member"><img class="avatar" src="https://i.pravatar.cc/160?img=16" alt="Owner"/><div><b>Owner 06</b></div><div class="role">Director</div></div>
+        <div class="member"><img class="avatar" src="https://i.pravatar.cc/160?img=17" alt="Owner"/><div><b>Owner 07</b></div><div class="role">Director</div></div>
+        <div class="member"><img class="avatar" src="https://i.pravatar.cc/160?img=18" alt="Owner"/><div><b>Owner 08</b></div><div class="role">Director</div></div>
+        <div class="member"><img class="avatar" src="https://i.pravatar.cc/160?img=19" alt="Owner"/><div><b>Owner 09</b></div><div class="role">Director</div></div>
+        <div class="member"><img class="avatar" src="https://i.pravatar.cc/160?img=20" alt="Owner"/><div><b>Owner 10</b></div><div class="role">Director</div></div>
+        <div class="member"><img class="avatar" src="https://i.pravatar.cc/160?img=21" alt="Owner"/><div><b>Owner 11</b></div><div class="role">Director</div></div>
+        <div class="member"><img class="avatar" src="https://i.pravatar.cc/160?img=22" alt="Owner"/><div><b>Owner 12</b></div><div class="role">Director</div></div>
+        <div class="member"><img class="avatar" src="https://i.pravatar.cc/160?img=23" alt="Owner"/><div><b>Owner 13</b></div><div class="role">Director</div></div>
+        <div class="member"><img class="avatar" src="https://i.pravatar.cc/160?img=24" alt="Owner"/><div><b>Owner 14</b></div><div class="role">Director</div></div>
+        <div class="member"><img class="avatar" src="https://i.pravatar.cc/160?img=25" alt="Owner"/><div><b>Owner 15</b></div><div class="role">Director</div></div>
+      </div>
+    </div>
+  </section>  <!-- =============================
+       🖼️ গ্যালারি সেকশন (Before/After)
+       ============================= -->  <section id="gallery" style="background:var(--soft)">
+    <div class="container">
+      <div class="section-head"><h2>Project Gallery</h2><span class="pill">Before / After</span></div>
+      <div class="gallery">
+        <figure class="shot"><span class="tag">Before</span><img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop" alt="Before wash sample"></figure>
+        <figure class="shot"><span class="tag">After</span><img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1200&auto=format&fit=crop" alt="After wash sample"></figure>
+        <figure class="shot"><span class="tag">After</span><img src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=1200&auto=format&fit=crop" alt="After wash sample"></figure>
+      </div>
+    </div>
+  </section>  <!-- =============================
+       📝 কন্টাক্ট + কোট রিকোয়েস্ট ফর্ম
+       ============================= -->  <section id="contact">
+    <div class="container">
+      <div class="section-head"><h2>Get a Quote</h2><span class="pill">রেসপন্স: 24 ঘন্টা</span></div>
+      <div class="contact">
+        <form class="panel" onsubmit="event.preventDefault(); alert('ধন্যবাদ! আপনার কোট রিকোয়েস্ট আমরা পেয়েছি। শীঘ্রই যোগাযোগ করা হবে.'); this.reset();">
+          <label>আপনার নাম</label>
+          <input type="text" placeholder="নাম লিখুন" required>
+          <label>মোবাইল নম্বর</label>
+          <input type="tel" placeholder="01XXXXXXXXX" required>
+          <label>সার্ভিস টাইপ</label>
+          <select>
+            <option>Enzyme Wash</option>
+            <option>Stone Wash</option>
+            <option>Acid Wash</option>
+            <option>Bleach Wash</option>
+          </select>
+          <label>অর্ডারের পরিমাণ</label>
+          <input type="text" placeholder="যেমন: 5,000 pcs বা 800 kg">
+          <label>বার্তা</label>
+          <textarea placeholder="আপনার বাড়তি চাহিদা/স্পেসিফিকেশন"></textarea>
+          <div style="display:flex; gap:10px; margin-top:12px;">
+            <button class="btn primary" type="submit">Submit</button>
+            <a class="btn" href="tel:+8801XXXXXXXXX">Call Now</a>
+          </div>
+        </form>
+        <aside class="panel">
+          <h3>Contact Info</h3>
+          <p class="sub">ঠিকানা: 123, ইন্ডাস্ট্রিয়াল এরিয়া, সাভার, ঢাকা</p>
+          <p class="sub">ইমেইল: msarker689@gmail.com</p>
+          <p class="sub">ফোন: +8801839395394</p>
+          <div style="height:220px; border-radius:14px; overflow:hidden; border:1px solid #e5e7eb; margin-top:10px;">
+            <!-- এমবেডেড ম্যাপের জায়গা (লাইভ করতে Google Map iFrame বসাবেন) -->
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d392.41162962756096!2d90.42072638814669!3d23.90843871000369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sbn!2sbd!4v1756421663294!5m2!1sbn!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		  <img src="https://images.unsplash.com/photo-1502920917128-1aa500764bcb?q=80&w=1200&auto=format&fit=crop" alt="Map placeholder" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>  <footer>
+    <div class="container">© <span id="year"></span> Garments Washing Ltd. All rights reserved.</div>
+  </footer>  <script>
+    // ছোট্ট JS: ডায়নামিক বছর সেট করা
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script></body>
+</html>

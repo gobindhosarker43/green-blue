@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+ <html lang="bn">
+  <head>
+   <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <title>Garments Washing Company</title>
+      <!-- Google Font -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+   
+  <style>
+    /* =============================
+       🔧 বেসিক স্টাইল (রং, ফন্ট ইত্যাদি)
+       ============================= */
+    :root{
+      --bg:#0b132b;        /* ডার্ক নীল ব্যাকগ্রাউন্ড */
+      --ink:#0f172a;       /* টেক্সটের গাঢ় রং */
+      --muted:#6b7280;     /* হালকা টেক্সট */
+      --brand:#2563eb;     /* ব্র্যান্ড নীল */
+      --brand-2:#22c55e;   /* সেকেন্ডারি সবুজ */
+      --paper:#ffffff;     /* সাদা */
+      --soft:#f3f4f6;      /* সফট গ্রে */
+      --ring: rgba(37, 99, 235,.25);
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(2,6,23,.10);
+    }
+	
+	*{ box-sizing: border-box;
+	}
+  html{ scroll-behavior: smooth;
+  }
+  body{
+        margin:0;
+		font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:var(--ink); background:#ffffff;
+}
+a{ color:inherit; text-decoration: none; }
+.container{ width:min(1100px, 90%); margin-inline:auto; }
+
+/* =============================
+   🔝 হেডার/নাভ (স্টিকি + মোবাইল মেনু)
+   ============================= */
+header{
+  position: sticky; top:0; z-index: 50; background:rgba(255,255,255,.8); backdrop-filter: blur(10px); border-bottom:1px solid #e5e7eb;
+}
+.nav{ display:flex; align-items:center; justify-content: space-between; gap:16px; padding:14px 0; }
+.logo{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px; }
+.logo-badge{ width:40px; aspect-ratio:1; display:grid; place-items:center; background:var(--brand); color:white; border-radius:12px; font-weight:800; box-shadow: var(--shadow); }
+.menu{ display:flex; gap:22px; align-items:center; }
+.menu a{ padding:10px 12px; border-radius:10px; font-weight:600; color:#1f2937; }
+.menu a:hover{ background:#eef2ff; color:#1d4ed8; }
+.cta{ background:var(--brand); color:white; padding:10px 16px; border-radius:12px; font-weight:700; box-shadow: var(--shadow); }
+
+/* মোবাইল মেনু */
+.mobile-toggle{ display:none; border:1px solid #e5e7eb; padding:8px 10px; border-radius:10px; background:white; }
+@media (max-width: 768px){
+  .menu{ display:none; position:absolute; top:64px; right:5%; flex-direction:column; align-items:stretch; background:white; padding:12px; border:1px solid #e5e7eb; border-radius:14px; width:min(300px, 90vw); box-shadow: var(--shadow); }
+  .menu.open{ display:flex; }
+  .mobile-toggle{ display:inline-flex; }
+}
+
+/* =============================
+   🏠 হিরো সেকশন (বড় ব্যানার)
+   ============================= */
+.hero{
+  position: relative; overflow:hidden; isolation:isolate;
+  background: radial-gradient(1200px 600px at 70% -10%, #dbeafe 0%, transparent 70%) , #f8fafc;
+}
+.hero .wrap{
+
+padding: 30px;
+
+  border-radius: 20px; overflow:hidden; border:1px solid #e5e7eb; box-shadow: var(--shadow);
+  background:url('img/c-m.jpg') center/cover no-repeat; aspect-ratio: 4/3;
+
+ display:grid; grid-template-columns: 1.1fr .9fr; gap:40px; align-items:center; ; 
+ 
+ }
+ 
+ .hero .wrap:hover{
+ background:url('img/6972ac1b-1d37-44d6-afb7-63d9447fb2f9.jfif') center/cover no-repeat; aspect-ratio: 4/3;
+  transform: scale(1.03);
+  box-shadow: 0 20px 40px rgba(15,23,42,0.12);
+}
+ 
+ 
+.headline{ font-size: clamp(28px, 5vw, 52px); line-height:1.05; font-weight: 800; letter-spacing:-.5px; }
+.sub{ color:var(--muted); font-size: clamp(14px, 2.3vw, 18px); }
+.hero-btns{ display:flex; gap:14px; margin-top:18px; flex-wrap:wrap; }
+.btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius: 14px; font-weight:700; border:1px solid #d1d5db; background:white; }
+.btn.primary{ background:var(--brand); color:white; border-color:transparent; }
+.stats{ display:grid; grid-template-columns: repeat(3,1fr); gap:14px; margin-top:26px; }
+.stat{ background:white; border:1px solid #e5e7eb; border-radius:14px; padding:14px; text-align:center; box-shadow: var(--shadow); }
+.stat b{ font-size:20px; }
+.hero-visual{
+  border-radius: 20px; overflow:hidden; border:1px solid #e5e7eb; box-shadow: var(--shadow);
+  background:url('img/c-m.jpg') center/cover no-repeat; aspect-ratio: 4/3;
+}
+
+ .hero-visual:hover{
+ background:url('img/6972ac1b-1d37-44d6-afb7-63d9447fb2f9.jfif') center/cover no-repeat; aspect-ratio: 4/3;
+  transform: scale(1.03);
+  box-shadow: 0 20px 40px rgba(15,23,42,0.12);
+}
+
+@media (max-width: 768px){ .hero .wrap{ grid-template-columns:1fr; } .hero-visual{ order:-1; } }
+
+/* =============================
+   🧪 সার্ভিস সেকশন
+   ============================= */
+section{ padding: 70px 0; }
+.section-head{ display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:26px; }
+.section-head h2{ font-size: clamp(22px, 3.5vw, 34px); margin:0; }
+.grid-4{ display:grid; grid-template-columns: repeat(4,1fr); gap:16px; }
+
+
+
+    input,button{
+      width:100%;
+      padding:10px;
+      margin:5px 0;
+      font-size:15px;
+      border-radius:6px;
+      border:1px solid #ccc;
+      box-sizing:border-box;
+    }
+	
+    button{
+      background:#007BFF;
+      color:#fff;
+      border:none;
+      cursor:pointer;
+    }
+	
+	    button:hover{background:#005dc5;}
+    .result{margin-top:10px;font-weight:bold;}
+    @media print{
+      body{background:#fff;}
+      section{box-shadow:none;border:1px solid #ccc;}
+      button#printBtn{display:none;}
+    }
+
+
+
+
+@media (max-width: 768px){ .grid-4{ grid-template-columns: repeat(2,1fr);} }
+@media (max-width: 520px){ .grid-4{ grid-template-columns: 1fr;} }
+
+.card{
+
+  background:url('img/c-m.jpg') center/cover no-repeat; aspect-ratio: 4/3;
+
+ width:55vh;  border:1px solid #e5e7eb; border-radius: var(--radius); padding:18px; box-shadow: var(--shadow); transition: transform .15s ease; }
+.card:hover{
+
+  background:url('img/c-m2.jpg') center/cover no-repeat; aspect-ratio: 4/3;
+
+ transform: translateY(-2px); }
+.svc-icon{ width:56px; height:56px; border-radius:14px; display:grid; place-items:center; background:#eff6ff; border:1px dashed #bfdbfe; margin-bottom:10px; }
+.svc-icon svg{ width:28px; height:28px; }
+.pill{ display:inline-block; padding:4px 10px; border-radius:999px; border:1px solid #e5e7eb; background:#f9fafb; font-size:12px; color:#374151; }
+
+/* =============================
+   👥 টিম (১৫ জন মালিক)
+   ============================= */
+.team{ display:grid; grid-template-columns: repeat(5,1fr); gap:16px; }
+@media (max-width: 768px){ .team{ grid-template-columns: repeat(4,1fr);} }
+@media (max-width: 768px){ .team{ grid-template-columns: repeat(3,1fr);} }
+@media (max-width: 360px){ .team{ grid-template-columns: repeat(2,1fr);} }
+.member{ text-align:center; padding:14px; border:1px solid #e5e7eb; border-radius:16px; background:white; box-shadow: var(--shadow); }
+.avatar{ width:84px; aspect-ratio:1; border-radius:50%; object-fit:cover; display:block; margin: 6px auto 10px; border:3px solid #e5e7eb; }
+.role{ color:var(--muted); font-size:12px; }
+
+
+  .inputs{
+    display:flex;
+    gap:10px;
+  }
+
+  .inputs input{
+    flex:1;
+    padding:12px;
+    font-size:14px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    outline:none;
+  }
+
+
+/* =============================
+   🖼️ গ্যালারি (Before/After)
+   ============================= */
+.gallery{ display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+@media (max-width: 820px){ .gallery{ grid-template-columns: repeat(2,1fr);} }
+@media (max-width: 520px){ .gallery{ grid-template-columns: 1fr;} }
+.shot{ position:relative; overflow:hidden; border-radius:18px; border:1px solid #e5e7eb; }
+.shot img{ width:100%; height:100%; object-fit:cover; display:block; aspect-ratio: 4/3; transition: transform .3s ease; }
+.shot:hover img{ transform: scale(1.05); }
+.tag{ position:absolute; left:10px; top:10px; background:rgba(17,24,39,.8); color:white; font-size:12px; padding:4px 8px; border-radius:999px; }
+
+
+
+footer{ margin-top:40px; padding:22px 0; border-top:1px solid #e5e7eb; color:#6b7280; }
+
+  </style>
+  
+</head>
+
+
+<body>
+
+  <!-- =============================
+       🔝 নাভবার: লোগো + মেনু
+       ============================= -->
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo" aria-label="Brand home">
+        <span class="logo-badge">G/B</span>
+        <span>Garments Washing</span>
+      </a>
+      <nav class="menu" id="menu">
+        <a href="servises.html">Services</a>
+        <a href="#process">Process</a>
+        <a href="#team">Owners</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact" class="cta" onclick="toggleLanguage()" style="margin-bottom:15px;padding:8px 14px;">
+  বাংলা / English
+
+		
+		</a>
+      </nav>
+      <button class="mobile-toggle" aria-label="Open menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    </div>
+  </header> 
+
+  <!-- =============================
+       🏠 হিরো সেকশন: টাইটেল + ইমেজ
+       ============================= -->
+  <section class="hero">
+    <div class="container wrap">
+      <div>
+        <h1 class="headline"data-bn="গার্মেন্টস ওয়াশিং কেমিক্যাল কস্টিং ড্যাশবোর্ড"
+    data-en="Garments Washing Chemical Costing Dashboard">
+    গার্মেন্টস ওয়াশিং কেমিক্যাল কস্টিং ড্যাশবোর্ড</h1>
+	
+	
+	
+	  <p
+    data-bn="স্মার্ট • নির্ভুল • সময় বাঁচানো"
+    data-en="Smart • Accurate • Time-saving">
+    স্মার্ট • নির্ভুল • সময় বাঁচানো
+  </p>
+  
+    <p
+    data-bn="এই ড্যাশবোর্ডটি গার্মেন্টস ওয়াশিং ফ্যাক্টরির কেমিক্যাল খরচ, অনুপাত, ইউনিট মূল্য এবং সময়ভিত্তিক কস্টিং নির্ভুলভাবে হিসাব করার জন্য তৈরি করা হয়েছে। এটি ম্যানুয়াল হিসাবের ভুল কমায় এবং প্রোডাকশন কস্ট কন্ট্রোল করতে সাহায্য করে।"
+    data-en="This dashboard is designed to calculate chemical cost, ratio, unit price, and time-based costing for garments washing factories. It helps reduce manual calculation errors and ensures accurate production costing.">
+    এই ড্যাশবোর্ডটি গার্মেন্টস ওয়াশিং ফ্যাক্টরির কেমিক্যাল খরচ, অনুপাত, ইউনিট মূল্য এবং সময়ভিত্তিক কস্টিং নির্ভুলভাবে হিসাব করার জন্য তৈরি করা হয়েছে।
+  </p>
+
+        <div class="hero-btns">
+          <a class="btn primary" href="index.html">Home</a>
+          <a class="btn" href="servises.html">Services</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>150+</b><div>Brand Clients</div></div>
+          <div class="stat"><b>25k+</b><div>Orders Delivered</div></div>
+          <div class="stat"><b>12yrs</b><div>Industry Experience</div></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- =============================
+       🧪 সার্ভিস সেকশন
+       ============================= --> 
+  <section id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Our Services</h2>
+         <span class="pill">লিড-টাইম: 3–7 দিন</span>
+           </div>
+	  
+	  
+      <div class="grid-4">
+
+        <!-- 🔹 সার্ভিস কার্ড ১: Enzyme Wash -->
+        <article class="card">
+          <div class="svc-icon" aria-hidden="true">
+            <!-- ফ্রি SVG আইকন (কেমিক্যাল ফ্লাস্ক) -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"> <path d="M9 3h6"></path><path d="M10 3v3l-6 9a5 5 0 0 0 4 8h8a5 5 0 0 0 4-8l-6-9V3"></path> </svg>
+          </div>
+				  <!-- ========= 1. মিক্স ➜ ইনটেক অনুপাত ========= -->
+				  <section id="mix-intake">
+					  <h2
+    data-bn="মিক্স থেকে ইনটেক অনুপাত ক্যালকুলেটর"
+    data-en="Mix to Intake Ratio Calculator">
+    মিক্স থেকে ইনটেক অনুপাত ক্যালকুলেটর
+  </h2>
+
+
+
+
+  <p
+    data-bn="মোট মিক্স থেকে প্রতি কেজিতে কত কেমিক্যাল ইনটেক লাগবে এবং আপনি যতটুকু ব্যবহার করছেন তার সঠিক খরচ বের করুন।"
+    data-en="Calculate how much chemical intake is required per kg of mix and determine the exact cost based on your usage.">
+    মোট মিক্স থেকে প্রতি কেজিতে কত কেমিক্যাল ইনটেক লাগবে এবং আপনি যতটুকু ব্যবহার করছেন তার সঠিক খরচ বের করুন।
+  </p>
+
+
+
+					<label>মোট মিক্স (কেজি)</label>
+					<input type="number" id="totalMix" placeholder="যেমন: ৫০">
+					<label>মোট ইনটেক (কেজি)</label>
+					<input type="number" id="totalIntake" placeholder="যেমন: ৫">
+					<label>প্রতি কেজির দাম (টাকা)</label>
+					<input type="number" id="pricePerKg" placeholder="যেমন: ৩৬০">
+					<label>তুমি যত কেজি মিক্স নিচ্ছো</label>
+					<input type="number" id="mixTaken" placeholder="যেমন: ০.৫">
+					<button onclick="calculateMix()">হিসাব করো</button>
+					<div class="result" id="mixResult"></div>
+				  </section>
+						  
+        </article>
+		
+		
+		
+		
+		
+		
+		
+        <!-- 🔹 সার্ভিস কার্ড ২: Stone Wash -->
+        <article class="card">
+          <div class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 16l8-12 8 12-8 4-8-4z"/>
+            </svg>
+          </div>
+  <!-- ========= 2. দাম ক্যালকুলেটর ========= -->
+  
+  
+  
+  
+  
+  <section id="price-calc">
+<!-- ===== Chemical Price Breakdown ===== -->
+
+  <h2
+    data-bn="কেমিক্যাল দামের বিশ্লেষণ (Kg → g → mg)"
+    data-en="Chemical Price Breakdown (Kg → g → mg)">
+    কেমিক্যাল দামের বিশ্লেষণ (Kg → g → mg)
+  </h2>
+
+  <p data-bn="কেমিক্যালের দাম কেজি থেকে গ্রাম ও মিলিগ্রামে রূপান্তর করে অল্প পরিমাণের সঠিক খরচ নির্ণয় করুন।"
+    data-en="Convert chemical price from kilogram to gram and milligram to get precise small-quantity costing.">
+    কেমিক্যালের দাম কেজি থেকে গ্রাম ও মিলিগ্রামে রূপান্তর করে অল্প পরিমাণের সঠিক খরচ নির্ণয় করুন।
+  </p>
+
+		
+    <label>এক কেজির দাম</label>
+    <input id="priceKg" type="number" placeholder="যেমন: 360">
+    <label>গ্রাম (g)</label>
+    <input id="grams" type="number" placeholder="যেমন: 600">
+    <label>মিলিগ্রাম (mg)</label>
+    <input id="milligrams" type="number" placeholder="যেমন: 250">
+    <button onclick="calcPrice()">হিসাব করো</button>
+    <div class="result" id="gramPrice"></div>
+    <div class="result" id="mgPrice"></div>
+  </section>
+		  
+        </article>
+		
+		
+
+		
+      </div>
+    </div>
+  </section>
+  
+  <!-- =============================
+       🔄 প্রসেস ওয়ার্কফ্লো (ধাপগুলো)
+       ============================= -->
+	 <section id="process" style="background:var(--soft)">
+		<div class="container">
+			<div class="section-head"><h2>Process Workflow</h2></div>
+				<div class="grid-4">
+	  		
+        <!-- 🔹 সার্ভিস কার্ড ৩: Acid Wash -->
+        <article class="card">
+          <div class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/><path d="M12 7v6l3 3"/>
+            </svg>
+          </div>	  		  
+  <!-- ========= 3. মিনিট ➜ ঘণ্টা ========= -->
+  <section id="minutes-hours">
+  
+  
+<h2
+    data-bn="সময় রূপান্তর টুল (Minute ↔ Hour)"
+    data-en="Time Conversion Tool (Minute ↔ Hour)">
+    সময় রূপান্তর টুল (Minute ↔ Hour)
+  </h2>
+
+  <p
+    data-bn="কাজের সময় মিনিট থেকে ঘন্টায় রূপান্তর করুন এবং দশমিক হিসাবসহ সঠিক সময় নির্ণয় করুন।"
+    data-en="Convert working time from minutes to hours, including decimal hour calculation for accurate costing.">
+    কাজের সময় মিনিট থেকে ঘন্টায় রূপান্তর করুন এবং দশমিক হিসাবসহ সঠিক সময় নির্ণয় করুন।
+  </p>	
+	
+	
+	
+	
+    <input type="number" id="minutesInput" placeholder="মিনিট লিখুন">
+    <button onclick="convertMinutes()">রূপান্তর করুন</button>
+    <div class="result" id="hourOutput"></div>
+  </section>	  
+        </article>
+		
+		
+        <!-- 🔹 সার্ভিস কার্ড ৪: Bleach Wash -->
+        <article class="card">
+          <div class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18"/><path d="M8 21V9l4-6 4 6v12"/>
+            </svg>
+          </div>		  
+  <!-- ========= 4. সময় ➜ টাকা ========= -->
+  <section id="time-money">
+  
+  
+ <h2
+    data-bn="সময় অনুযায়ী খরচ ক্যালকুলেটর"
+    data-en="Time-Based Cost Calculator">
+    সময় অনুযায়ী খরচ ক্যালকুলেটর
+  </h2>
+
+  <p
+    data-bn="কাজের সময় এবং প্রতি ঘন্টার রেট অনুযায়ী মোট খরচ হিসাব করে মেশিন বা প্রসেস কস্ট বুঝুন।"
+    data-en="Calculate total cost based on working time and hourly rate to understand machine or process expenses.">
+    কাজের সময় এবং প্রতি ঘন্টার রেট অনুযায়ী মোট খরচ হিসাব করে মেশিন বা প্রসেস কস্ট বুঝুন।
+  </p>
+	
+	
+	
+    <label>সময় (ঘন্টা:মিনিট)</label>
+    <input id="timeInput" placeholder="যেমন 1:20 বা 0:45">
+    <button onclick="calcTimeMoney()">হিসাব করুন</button>
+    <div class="result" id="timePrice"></div>
+  </section>
+  	    </article>
+		
+	  
+
+      </div>
+    </div>
+  </section>  
+  
+  <!-- =============================
+       👥 ১৫ জন মালিকের গ্রিড
+       ============================= -->
+  <section id="team">
+    <div class="container">
+	 <div class="section-head"><h2>Our Owners (15)</h2><span class="pill">ডিরেক্টর বোর্ড</span></div>  
+	 
+	  <div class="box"> 
+	   <div class="inputs">
+		<input type="number" id="price" placeholder="টোটাল দাম">
+		 <input type="number" id="qty" placeholder="টোটাল মাল">
+          </div>
+	     <button onclick="calculate()">হিসাব দেখাও</button>
+	  <!-- Result -->
+	  <div class="result">
+		❌ ১ পিস : <span id="piece">--</span><br>
+		✅ ১ ডজন : <span id="dozen">💲</span>
+	  </div>
+
+	  </div>
+		  
+		  
+    </div>
+  </section>
+
+  <!-- =============================
+       🖼️ গ্যালারি সেকশন (Before/After)
+       ============================= -->  <section id="gallery" style="background:var(--soft)">
+    <div class="container">
+      <div class="section-head"><h2>Project Gallery</h2><span class="pill">Before / After</span></div>
+      <div class="gallery">
+        <figure class="shot"><span class="tag">Before</span><img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop" alt="Before wash sample"></figure>
+        <figure class="shot"><span class="tag">After</span><img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1200&auto=format&fit=crop" alt="After wash sample"></figure>
+        <figure class="shot"><span class="tag">After</span><img src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=1200&auto=format&fit=crop" alt="After wash sample"></figure>
+      </div>
+    </div>
+  </section> 
+
+
+
+
+  <footer>
+    <div class="container">© <span id="year"></span> Garments Washing Ltd. All rights reserved.</div>
+  </footer>  
+  
+  
+  <script>
+  
+let isBangla = true;
+
+function toggleLanguage() {
+  isBangla = !isBangla;
+
+  document.querySelectorAll('[data-bn]').forEach(el => {
+    el.innerText = isBangla
+      ? el.getAttribute('data-bn')
+      : el.getAttribute('data-en');
+  });
+}
+
+  
+  
+  /* === 1️⃣ মিক্স থেকে ইনটেক === */
+  function calculateMix(){
+    const totalMix   = parseFloat(document.getElementById("totalMix").value);
+    const totalIntake= parseFloat(document.getElementById("totalIntake").value);
+    const pricePerKg = parseFloat(document.getElementById("pricePerKg").value);
+    const mixTaken   = parseFloat(document.getElementById("mixTaken").value);
+    if(!totalMix || !totalIntake || !pricePerKg || !mixTaken){
+      document.getElementById("mixResult").innerText="দয়া করে সব ঘর পূরণ করুন!";
+      return;
+    }
+    const intakePerKg = totalIntake / totalMix;
+    const intakeTaken = mixTaken * intakePerKg;
+    const price       = intakeTaken * pricePerKg;
+    document.getElementById("mixResult").innerHTML =
+      `🔸 ${mixTaken} কেজি মিক্সে ইনটেক: ${intakeTaken.toFixed(3)} কেজি<br>`+
+      `💰 দাম: ${price.toFixed(2)} টাকা`;
+  }
+
+
+
+  /* === 2️⃣ দাম ক্যালকুলেটর === */
+  function calcPrice(){
+    const perKg = parseFloat(document.getElementById("priceKg").value);
+    const grams = parseFloat(document.getElementById("grams").value);
+    const mg    = parseFloat(document.getElementById("milligrams").value);
+    if(isNaN(perKg)){
+      document.getElementById("gramPrice").textContent="⛔ প্রতি কেজির দাম দিন";
+      document.getElementById("mgPrice").textContent="";
+      return;
+    }
+    if(!isNaN(grams)){
+      document.getElementById("gramPrice").textContent=`${grams}g এর দাম: ${(perKg*grams/1000).toFixed(2)} ৳`;
+    }else document.getElementById("gramPrice").textContent="";
+    if(!isNaN(mg)){
+      document.getElementById("mgPrice").textContent=`${mg}mg এর দাম: ${(perKg*mg/1000000).toFixed(4)} ৳`;
+    }else document.getElementById("mgPrice").textContent="";
+    if(isNaN(grams)&&isNaN(mg)){
+      document.getElementById("gramPrice").textContent="⛔ গ্রাম বা মিলিগ্রাম দিন";
+      document.getElementById("mgPrice").textContent="";
+    }
+  }
+
+
+
+
+  /* === 3️⃣ মিনিট থেকে ঘণ্টা === */
+  function convertMinutes(){
+    const val = document.getElementById("minutesInput").value;
+    if(val==="" || val<0){
+      document.getElementById("hourOutput").innerHTML="⚠️ সঠিক মিনিট লিখুন";
+      return;
+    }
+    const min = parseFloat(val);
+    const h = Math.floor(min/60);
+    const m = min%60;
+    const dec=(min/60).toFixed(6);
+    document.getElementById("hourOutput").innerHTML =
+      `👉 ${min} মিনিট = <b>${h} ঘণ্টা ${m} মিনিট</b><br>👉 দশমিক = <b>${dec} ঘণ্টা</b>`;
+  }
+
+
+
+
+
+  /* === 4️⃣ সময় ➜ টাকা === */
+  const RATE_PER_HOUR = 1000;
+  const RATE_PER_MIN  = RATE_PER_HOUR/60;
+  function calcTimeMoney(){
+    const raw=document.getElementById("timeInput").value.trim();
+    if(!raw){document.getElementById("timePrice").textContent="দয়া করে সময় দিন";return;}
+    let h=0,m=0;
+    if(raw.includes(":")){
+      const [hh,mm]=raw.split(":");
+      h=parseFloat(hh)||0; m=parseFloat(mm)||0;
+    }else{h=parseFloat(raw)||0;}
+    if(h<0||m<0||m>=60){
+      document.getElementById("timePrice").textContent="ভালভাবে সময় লিখুন";return;
+    }
+    const totMin=h*60+m;
+    const price=totMin*RATE_PER_MIN;
+    document.getElementById("timePrice").textContent=`মোট দাম: ${price.toFixed(2)} টাকা`;
+  }
+  
+  
+  
+
+
+function calculate(){
+  let price = +document.getElementById("price").value;
+  let qty   = +document.getElementById("qty").value;
+
+  if(!price || !qty) return;
+
+  let perPiece = (price / qty) / 100;
+  let perDozen = perPiece * 12;
+
+  document.getElementById("piece").innerText =
+    perPiece.toFixed(4) + " USD";
+
+  document.getElementById("dozen").innerText =
+    perDozen.toFixed(4) + " USD";
+}
+
+    // ছোট্ট JS: ডায়নামিক বছর সেট করা
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script></body>
+</html>
